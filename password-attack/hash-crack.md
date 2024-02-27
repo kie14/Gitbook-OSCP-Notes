@@ -28,6 +28,11 @@ hashcat -m 23800 --force hash.txt /usr/share/wordlists/rockyou.txt --quiet
 hashcat --help | grep "apr" {pattern} to check -m 
 ```
 
+```
+hashcat -I //display hardware info
+hashcat -d # //specify the device for cracking
+```
+
 ### Linux shadow
 
 ```
